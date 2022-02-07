@@ -1,5 +1,5 @@
 import requests
-from flask import Flask
+from flask import Flask, abort, jsonify
 
 # Source api
 Dcbtube_url = 'https://menu.dckube.scilifelab.se/api/'
@@ -19,17 +19,37 @@ def backend(content):
     
     return (content)
 
+@app.errorhandler(404)
+def api_error(e):
+    # return error as json
+    return jsonify(error=str(e)), 404
+
+
+@app.errorhandler(501)
+def api_error(e):
+    # return error as json
+    return jsonify(error=str(e)), 501
+
 
 # main route
 # using 'path' type to allow '/' for subpaths
 @app.route("/<path:uri>")
 def relay(uri):
-    response = requests.get(Dcbtube_url + uri)
-    content = response.json()
-    content = backend(content)
+    try:
+        response = requests.get(Dcbtube_url + uri)
+        content = backend(response.json())
+        
+        try:
+            'application/json' in response.headers.get("Content-Type")
+            return content
+        
+        except:
+            abort(501, descrption = "Not implmented")
+            
+    except:
+        abort(404, description = "Resource not found")
+            
     
-    return content
-
 
 if __name__ == "__main__":
     app.run(debug=True, threaded=True)
