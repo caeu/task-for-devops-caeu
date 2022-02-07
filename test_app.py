@@ -35,6 +35,12 @@ class TestRelay(unittest.TestCase):
             res = c.get("restaurant/not_a_restaurant_really")
             self.assertEqual(res.headers.get("content-type"), "application/json")
 
+    # test content        
+    def test_res_content(self):
+        with app.test_client(self) as c:
+            res = c.get("restaurant")
+            self.assertIn(b'{\n  "restaurants":', res.data)
+
         
 if __name__ == "__main__":
         unittest.main()
