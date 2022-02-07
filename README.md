@@ -6,13 +6,8 @@ With reference number: UFV-PA 2021/4876
 
 A pull request called "Feedback" will automatically be created on your repository. You can use that PR for questions and to request feedback. 
 
-## Task 0
 
-Please update this readme by:
-- deleting this section
-- adding your name
-
-Example: **Kalle Kråka**
+Name: **Caesar Al Jewari**
 
 ## Task 1
 
