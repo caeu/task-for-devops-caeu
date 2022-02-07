@@ -1,4 +1,4 @@
-### Task 1 design and comments
+### Task 1 design and instructions
 `Flask` is python micro web application that is light, fast and relatively simple to work with. It seems fit for this task.
 Since there are no actual webpages served in this application, only a single python file is created, i.e., no template or static directories.
 
