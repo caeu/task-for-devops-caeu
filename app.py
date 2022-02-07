@@ -51,10 +51,11 @@ def api_error(e):
 def relay(uri):
     try:
         response = requests.get(Dcbtube_url + uri)
-        content = backend(response.json())
+        response.raise_for_status()
         
         try:
             'application/json' in response.headers.get("Content-Type")
+            content = backend(response.json())
             return content
         
         except:
