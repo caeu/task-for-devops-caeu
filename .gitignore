@@ -1,0 +1,20 @@
+# Environment
+venv/
+.env
+
+
+# 
+__pycache__/
+
+
+
+# Flast related
+instance/
+
+
+# Cache
+.cache
+
+
+# vscode
+**/.vscode
