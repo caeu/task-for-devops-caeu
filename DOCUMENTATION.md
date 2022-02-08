@@ -76,11 +76,11 @@ There are three options:
 docker build "https://github.com/NBISweden/task-for-devops-caeu#master" -t latest
 ```
 
-2) Or, pull a pre-built image from docker-hub
+2) Or, pull a pre-built and published image on [docker-hub](https://hub.docker.com/repository/docker/caeu/taskfordevopscaeu)
 ```
 docker pull "caeu/taskfordevopscaeu"
 ```
-One can also use the `docker run` command to pull the image and run the container, the `-p` flag is to set the port number of the docker machine. This port number should match the `EXPOSE` entry in the `Dockerfile`.
+One can also use the `docker run` command to pull the image and run the container for images pulished on Docker-hub. The `-p` flag here is to set the port number of the docker container. This port number should match the `EXPOSE` entry in the `Dockerfile`.
 ```
 docker run -p 8000:8000 "caeu/taskfordevopscaeu"
 ```
@@ -112,7 +112,7 @@ To run the container in detached mode
 docker run -d -p 8000:8000 <IMAGE ID>
 ```
 
-To stop the docker
+To stop the container 
 ```
 docker stop <IMAGE ID>
 ```
