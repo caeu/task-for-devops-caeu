@@ -18,16 +18,19 @@ config = {"CACHE_TYPE": "SimpleCache",
 app.config.from_mapping(config)
 cache = Cache(app)
 
-# Function for backend processing can be 
-# extended or moved to another source file
+
 def backend(content):
-    '''
-    Receives object of type dict
-    '''
-    # processing if needed
+    """function for possible back end
+    processing currently does nothing
+    but log the cache-misses
+
+    Args:
+        content (dict): 
+
+    Returns:
+        dict: currently same as input
+    """
     
-    # print this message if cache is not used
-    # just to test the cache is working
     print(f'new call or cache expired! calling external api')
     
     return (content)
