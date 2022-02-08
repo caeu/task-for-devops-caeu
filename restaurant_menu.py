@@ -63,7 +63,7 @@ else:
     user_rst = ' '.join(sys.argv[1:]) 
 
     # Exit the loop once a restaurant is found. This assumes no duplicate names
-    # Consider chaning to full search, e.g. should partial input be allowed.
+    # Consider changing to full search, e.g. should partial input be allowed.
     if (rst_found := next(
         (rst for rst in rst_list if rst["name"] == user_rst), 
         None) ):
