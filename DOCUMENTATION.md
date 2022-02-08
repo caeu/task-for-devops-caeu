@@ -138,6 +138,10 @@ The reports show approximately similar results for the capacity of the app. The 
 
 To improve the performance, other than scaling up the network I\O, one can increase the cache timeout. However, this will increase the chances of returning expired results. Moreover, the tests shown here are conducted locally, i.e., the client and the server are on the same hardware. Therefore, realistic tests using specialized external services that can simulate actual internet requests will better reflect the server's capacity. Nevertheless, I would try to determine the bottlenecks, if any, to select the best strategy to improve performance with minimal cost. Also, try other manipulating the wsgi server, like the number of threads versus the number of workers, or try another wsgi server. If nothing helps, the next step would be investing in more hardware resources.
 
+**UPDATE**
+It turns out that the cache-misses (if I can call them such) are due to multi-threading. This makes sense. 
+I re-did the tests with a single thread. The caching now looks as expected. However, the performance drop is about half.
+
 
 1) Using [plow](https://github.com/six-ddc/plow)
 ```
