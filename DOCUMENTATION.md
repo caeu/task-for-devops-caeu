@@ -1,4 +1,4 @@
-### Task 1 design and instructions
+# Task 1: Design and Instructions
 `Flask` is python micro web application that is light, fast and relatively simple to work with. It seems fit for this task.
 Since there are no actual webpages served in this application, only a single python file is created, i.e., no template or static directories.
 
@@ -14,7 +14,12 @@ The app workflow:
 A dummy backend function is intended for future new features (currently dummy function).
 
 
-To start the app web server locally, navigate to the directory underwhich `app.py` is located and run:
+To start the app web server locally, the make sure the dependencies in the `requirements.txt` are installed:
+It is highly recommended to use virtual environment, e.g. venv, pipenv or any other.
+```
+pip3 install -r requirements.txt 
+``` 
+navigate to the directory under which `app.py` is located and run:
 
 ```
 flask run
@@ -25,9 +30,9 @@ flask run
 To test, open this link in the browser: `http://127.0.0.1:5000/restaurants` you should get back a json response (restaurants)
 
 
-Note that multithreading is enabled, and the app will start in debug mode
+Note that multi-threading is enabled, and the app will start in debug mode
 
-Also, caching is enbaled with cache expiry time set to 10 seconds.
+Also, caching is enabled with cache expiry time set to 10 seconds.
 
 If the port `5000` is occupied by other applications, start the server on a different port, for e.g.:
 
@@ -56,4 +61,63 @@ gunicorn --threads 2 --bind "0.0.0.0:8000" app:app
 
 To stop the server app, flask or gunicorn, kill the process with `Ctrl-c`
 
+  
+<br />
 
+# Task 2: Build and run in a Dockerized container:
+
+#### Requirements:
+1) Recent version of [Docker](https://docs.docker.com/get-docker/) is installed **and running** on the intended platform.
+
+#### Building and running:
+There are three options:
+1) Building the image directly from this repo's url to the server or to the local computer
+```
+docker build "https://github.com/NBISweden/task-for-devops-caeu#master" -t latest
+```
+
+2) Or, pull a pre-built and published image on [docker-hub](https://hub.docker.com/repository/docker/caeu/taskfordevopscaeu)
+```
+docker pull "caeu/taskfordevopscaeu"
+```
+One can also use the `docker run` command to pull the image and run the container for images pulished on Docker-hub. The `-p` flag here is to set the port number of the docker container. This port number should match the `EXPOSE` entry in the `Dockerfile`.
+```
+docker run -p 8000:8000 "caeu/taskfordevopscaeu"
+```
+
+3) Or, for development purposes, clone this github repo, and build the image
+```diff
+git clone "https://github.com/NBISweden/task-for-devops-caeu" . 
+# note the dot above is a shorthand for current directory
+
+cd ./task-for-devops-caeu
+
+docker build . 
+# the dot here is a shorthand for the Dockerfile
+```
+
+Before running the docker container, check that it is build and listed
+```
+docker images
+```
+The command above will output a list of installed docker images, take note of the `IMAGE ID`
+
+To run the container
+```
+docker run -p 8000:8000 <IMAGE ID>
+```
+
+To run the container in detached mode
+```
+docker run -d -p 8000:8000 <IMAGE ID>
+```
+
+To stop the container 
+```
+docker stop <IMAGE ID>
+```
+
+For help about docker command line
+```
+docker --help
+```
