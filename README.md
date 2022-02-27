@@ -2,7 +2,6 @@
 
 For the position as system developer with operational responsibility.
 
-With reference number: UFV-PA 2021/4876
 
 A pull request called "Feedback" will automatically be created on your repository. You can use that PR for questions and to request feedback. 
 
